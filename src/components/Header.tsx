@@ -31,7 +31,7 @@ export default function Header() {
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
-          <div className={styles.logo}>YourName</div>
+          <div className={styles.logo}>Harcastic</div>
           
           <button
             className={styles.mobileMenuBtn}

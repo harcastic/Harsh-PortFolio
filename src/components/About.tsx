@@ -7,6 +7,7 @@ export default function About() {
   const { elementRef, isVisible } = useIntersectionObserver();
 
   return (
+  
     <section 
       id="about" 
       ref={elementRef as React.RefObject<HTMLElement>}

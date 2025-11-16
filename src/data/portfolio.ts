@@ -3,13 +3,13 @@ import { Project, SkillCategory, ContactInfo } from '@/types';
 export const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'Jharkhand Tourism',
     category: 'web',
-    description: 'A full-stack e-commerce solution with real-time inventory management',
-    image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&h=600&fit=crop',
-    technologies: ['Next.js', 'TypeScript', 'PostgreSQL'],
-    features: ['Real-time inventory updates', 'Secure payment processing'],
-    githubUrl: 'https://github.com/yourusername',
+    description: 'A tourism website developed for the Jharkhand Government to promote the state’s culture, heritage, and natural attractions.',
+    image: '/Tourism.png',
+    technologies: ['Html', 'CSS' ,'JavaScript', 'EJS'],
+    features: ['Real-time weather updates', 'Itinerary Planner', 'AI-Assistant'],
+    githubUrl: 'https://github.com/harcastic/Jharkhand-Tourism',
     liveUrl: '#',
   },
   {
@@ -24,13 +24,13 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: 'Task Management App',
+    title: 'Airbnb Clone',
     category: 'web',
     description: 'Collaborative project management tool with real-time updates',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-    technologies: ['React', 'Node.js', 'Socket.io'],
+    image: '/airbnb.png',
+    technologies: ['HTML','EJS','JavaScript', 'Node.js', 'MongoDb'],
     features: ['Real-time collaboration', 'Task assignments'],
-    githubUrl: 'https://github.com/yourusername',
+    githubUrl: 'https://github.com/harcastic/Airbnb-clone',
     liveUrl: '#',
   },
   {
@@ -45,13 +45,13 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    title: 'Social Media Dashboard',
+    title: 'Music player',
     category: 'web',
-    description: 'Analytics dashboard for social media metrics',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    technologies: ['Vue.js', 'D3.js', 'Express'],
+    description: 'Dashboard for Music player',  
+    image: '/music-player.png',
+    technologies: ['Reactjs', 'Nodejs', 'Express'],
     features: ['Data visualization', 'Multiple platform integration'],
-    githubUrl: 'https://github.com/yourusername',
+    githubUrl: 'https://github.com/harcastic/Music_Player',
     liveUrl: '#',
   },
   {
@@ -67,6 +67,16 @@ export const projects: Project[] = [
 ];
 
 export const skillCategories: SkillCategory[] = [
+  {
+    title: 'Cloud & DevOps',
+    skills: [
+      { name: 'AWS', level: 85 },
+      { name: 'Docker', level: 80 },
+      { name: 'Kubernetes', level: 75 },
+      { name: 'Terraform', level: 70 },
+    ],
+  },
+
   {
     title: 'Frontend',
     skills: [
@@ -84,19 +94,11 @@ export const skillCategories: SkillCategory[] = [
       { name: 'PostgreSQL', level: 85 },
       { name: 'MongoDB', level: 80 },
     ],
-  },
-  {
-    title: 'Cloud & DevOps',
-    skills: [
-      { name: 'AWS', level: 85 },
-      { name: 'Docker', level: 80 },
-      { name: 'Kubernetes', level: 75 },
-      { name: 'Terraform', level: 70 },
-    ],
-  },
+  }
+  
 ];
 
 export const contactInfo: ContactInfo = {
-  email: 'your.email@example.com',
-  location: 'Your City, Country',
+  email: 'harsh.raj2274@gmail.com',
+  location: 'Bihar, India',
 };

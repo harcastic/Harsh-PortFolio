@@ -17,7 +17,7 @@
 
 .aboutContent {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 0 auto; 
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text-secondary);
@@ -48,7 +48,8 @@
 .section {
   padding: 5rem 2rem;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0  auto;
+  /* margin-top: 12rem ; */
   background: rgba(255, 255, 255, 0.02);
 }
 
