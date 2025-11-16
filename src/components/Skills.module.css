@@ -1,0 +1,231 @@
+.section {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 3rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.section.visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.accent {
+  color: var(--accent-blue);
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skillCategory {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: opacity, transform;
+}
+
+.section.visible .skillCategory {
+  animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.section.visible .skillCategory:nth-child(1) { 
+  animation-delay: 0.1s; 
+}
+
+.section.visible .skillCategory:nth-child(2) { 
+  animation-delay: 0.3s; 
+}
+
+.section.visible .skillCategory:nth-child(3) { 
+  animation-delay: 0.5s; 
+}
+
+.skillCategory h3 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.skillItem {
+  margin-bottom: 1.5rem;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skillName {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+}
+
+.skillLevel {
+  font-size: 0.9rem;
+  color: var(--accent-blue);
+  font-weight: 600;
+  min-width: 45px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.skillBar {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.skillProgress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  border-radius: 50px;
+  position: relative;
+  width: 0;
+  transition: width 0.1s linear;
+  will-change: width;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+}
+
+/* Fill animation when visible */
+.skillProgress.fill {
+  animation: fillSkillBar 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Glowing effect on the progress bar */
+.skillProgress::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* Glow at the end of progress bar */
+.skillProgress::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+              0 0 20px rgba(59, 130, 246, 0.6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skillProgress.fill::after {
+  opacity: 1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Hover effects */
+.skillItem:hover .skillName {
+  color: var(--accent-blue);
+}
+
+.skillItem:hover .skillProgress {
+  filter: brightness(1.2);
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.6);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fillSkillBar {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--skill-level);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1.2);
+  }
+}
+
+@media (max-width: 768px) {
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .skillCategory {
+    padding: 1.5rem;
+  }
+}
+
+/* Ensure animation runs smoothly */
+@media (prefers-reduced-motion: no-preference) {
+  .skillProgress.fill {
+    animation: fillSkillBar 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skillProgress.fill {
+    animation: fillSkillBar 0.3s linear forwards;
+  }
+  
+  .skillProgress::before,
+  .skillProgress.fill::after {
+    animation: none;
+  }
+}
