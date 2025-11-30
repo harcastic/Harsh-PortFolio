@@ -1,41 +1,87 @@
 'use client';
 
 import Link from 'next/link';
-import { Project } from '@/types';
+import { useState } from 'react';
 import { projects } from '@/data/portfolio';
-import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import styles from './Projects.module.css';
+import ProjectsNavbar from '@/components/ProjectsNavbar';
+import styles from './page.module.css';
 
-export default function Projects() {
-  const { elementRef, isVisible } = useIntersectionObserver();
+type FilterType = 'all' | 'web' | 'cloud';
 
-  const featuredProjects = projects.slice(0, 3);
+export default function AllProjects() {
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+
+  const filteredProjects = projects.filter(
+    (project) => activeFilter === 'all' || project.category === activeFilter
+  );
 
   return (
-    <section 
-      id="projects" 
-      ref={elementRef as React.RefObject<HTMLElement>}
-      className={`${styles.section} ${isVisible ? styles.visible : ''}`}
-    >
-      <h2>My <span className={styles.accent}>Projects</span></h2>
+    <>
+      <ProjectsNavbar />
+      <main className={styles.main}>
+      <section className={styles.section}>
+        <div className={styles.header}>
+          <div>
+            <h1>All Projects</h1>
+            <p>Explore my complete collection of web and cloud projects</p>
+          </div>
+        </div>
 
-      <div className={styles.projectsGrid}>
-        {featuredProjects.map((project, index) => (
-          <ProjectCard key={project.id} project={project} index={index} />
-        ))}
-      </div>
+        <div className={styles.filterButtons}>
+          <button
+            className={`${styles.filterBtn} ${activeFilter === 'all' ? styles.active : ''}`}
+            onClick={() => setActiveFilter('all')}
+          >
+            All ({projects.length})
+          </button>
+          <button
+            className={`${styles.filterBtn} ${activeFilter === 'web' ? styles.active : ''}`}
+            onClick={() => setActiveFilter('web')}
+          >
+            <span>💻</span> Web ({projects.filter(p => p.category === 'web').length})
+          </button>
+          <button
+            className={`${styles.filterBtn} ${activeFilter === 'cloud' ? styles.active : ''}`}
+            onClick={() => setActiveFilter('cloud')}
+          >
+            <span>☁️</span> Cloud ({projects.filter(p => p.category === 'cloud').length})
+          </button>
+        </div>
 
-      <div className={styles.viewAllButtonContainer}>
-        <Link href="/projects" className={styles.viewAllButton}>
-          View All Projects
-          <span className={styles.arrowIcon}>→</span>
-        </Link>
-      </div>
-    </section>
+        <div className={styles.projectsGrid}>
+          {filteredProjects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+
+        {filteredProjects.length === 0 && (
+          <div className={styles.noProjects}>
+            <p>No projects found in this category.</p>
+          </div>
+        )}
+      </section>
+      </main>
+    </>
   );
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ 
+  project, 
+  index 
+}: { 
+  project: { 
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    image: string;
+    technologies: string[];
+    features: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+  }; 
+  index: number;
+}) {
   return (
     <div 
       className={styles.projectCard}

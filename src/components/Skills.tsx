@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { skillCategories } from '@/data/portfolio';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import styles from './Skills.module.css';
 
 export default function Skills() {
   const { elementRef, isVisible } = useIntersectionObserver();
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
     <section 
@@ -15,104 +16,71 @@ export default function Skills() {
       className={`${styles.section} ${isVisible ? styles.visible : ''}`}
     >
       <h2>My <span className={styles.accent}>Skills</span></h2>
-      <div className={styles.skillsGrid}>
-        {skillCategories.map((category, index) => (
-          <SkillCategory 
-            key={category.title} 
-            category={category} 
-            index={index}
-            isVisible={isVisible}
-          />
+      <div className={styles.skillsContainer}>
+        {skillCategories.map((category, categoryIndex) => (
+          <div key={category.title} className={styles.skillCategory}>
+            <h3 className={styles.categoryTitle}>{category.title}</h3>
+            <div className={styles.skillsGrid}>
+              {category.skills.map((skill, skillIndex) => (
+                <SkillCard
+                  key={skill.name}
+                  skill={skill}
+                  index={skillIndex}
+                  categoryIndex={categoryIndex}
+                  isVisible={isVisible}
+                  isHovered={hoveredSkill === skill.name}
+                  onHover={setHoveredSkill}
+                />
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </section>
   );
 }
 
-function SkillCategory({ 
-  category, 
-  index, 
-  isVisible 
-}: { 
-  category: { title: string; skills: { name: string; level: number }[] }; 
-  index: number;
-  isVisible: boolean;
-}) {
-  return (
-    <div 
-      className={`${styles.skillCategory} ${isVisible ? styles.visible : ''}`}
-      style={{ animationDelay: `${index * 0.2}s` }}
-    >
-      <h3>{category.title}</h3>
-      {category.skills.map((skill, skillIndex) => (
-        <SkillBar 
-          key={skill.name} 
-          skill={skill} 
-          isVisible={isVisible}
-          delay={skillIndex * 0.15}
-        />
-      ))}
-    </div>
-  );
-}
-
-function SkillBar({ 
-  skill, 
+function SkillCard({
+  skill,
+  index,
+  categoryIndex,
   isVisible,
-  delay 
-}: { 
-  skill: { name: string; level: number }; 
+  isHovered,
+  onHover,
+}: {
+  skill: { name: string; level: number };
+  index: number;
+  categoryIndex: number;
   isVisible: boolean;
-  delay: number;
+  isHovered: boolean;
+  onHover: (name: string | null) => void;
 }) {
-  const [displayLevel, setDisplayLevel] = useState(0);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    // Start animation after delay
-    const startTimeout = setTimeout(() => {
-      // Animate the number counting
-      const duration = 1500; // 1.5 seconds
-      const steps = 60; // 60 steps for smooth animation
-      const increment = skill.level / steps;
-      const stepDuration = duration / steps;
-      let current = 0;
-      let step = 0;
-
-      const timer = setInterval(() => {
-        step++;
-        current = Math.min(increment * step, skill.level);
-        setDisplayLevel(Math.round(current));
-
-        if (step >= steps) {
-          clearInterval(timer);
-          setDisplayLevel(skill.level); // Ensure we end at exact value
-        }
-      }, stepDuration);
-
-      return () => clearInterval(timer);
-    }, delay * 1000);
-
-    return () => clearTimeout(startTimeout);
-  }, [isVisible, skill.level, delay]);
-
   return (
-    <div className={styles.skillItem}>
-      <div className={styles.skillHeader}>
-        <span className={styles.skillName}>{skill.name}</span>
-        <span className={styles.skillLevel}>
-          {displayLevel}%
-        </span>
-      </div>
-      <div className={styles.skillBar}>
-        <div 
-          className={`${styles.skillProgress} ${isVisible ? styles.fill : ''}`}
-          style={{ 
-            '--skill-level': `${skill.level}%`,
-            animationDelay: `${delay}s`
-          } as React.CSSProperties}
-        />
+    <div
+      className={`${styles.skillCard} ${isVisible ? styles.visible : ''} ${
+        isHovered ? styles.hovered : ''
+      }`}
+      style={{
+        animationDelay: `${categoryIndex * 0.2 + index * 0.1}s`,
+      }}
+      onMouseEnter={() => onHover(skill.name)}
+      onMouseLeave={() => onHover(null)}
+    >
+      <div className={styles.cardInner}>
+        <div className={styles.iconWrapper}>
+          <span className={styles.skillIcon}>⚡</span>
+        </div>
+        <h4 className={styles.skillName}>{skill.name}</h4>
+        <div className={styles.skillIndicator}>
+          {[...Array(5)].map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.dot} ${
+                i < Math.ceil(skill.level / 20) ? styles.active : ''
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
