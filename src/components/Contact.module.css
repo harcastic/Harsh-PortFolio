@@ -22,6 +22,20 @@
   margin: 0 auto;
 }
 
+.contactInfo {
+  background: var(--surface);
+  border-radius: 32px;
+  padding: 2.75rem;
+  box-shadow: 24px 24px 45px rgba(15, 23, 42, 0.25), -18px -18px 40px rgba(255, 255, 255, 0.85);
+}
+
+.contactForm {
+  background: var(--surface);
+  border-radius: 32px;
+  padding: 2.75rem;
+  box-shadow: 24px 24px 45px rgba(15, 23, 42, 0.25), -18px -18px 40px rgba(255, 255, 255, 0.85);
+}
+
 .contactInfo h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
@@ -37,27 +51,34 @@
   align-items: center;
   gap: 1rem;
   margin-bottom: 1.5rem;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  background: var(--surface-soft);
+  box-shadow: inset 3px 3px 10px rgba(15, 23, 42, 0.12), inset -3px -3px 10px rgba(255, 255, 255, 0.9);
   transition: transform 0.3s ease;
 }
 
 .contactItem:hover {
-  transform: translateX(10px);
+  transform: translateX(6px);
+  box-shadow: inset 2px 2px 8px rgba(15, 23, 42, 0.08), inset -2px -2px 12px rgba(255, 255, 255, 0.95);
 }
 
 .contactIcon {
   width: 50px;
   height: 50px;
-  background: rgba(59, 130, 246, 0.2);
-  border-radius: 0.5rem;
+  background: var(--surface);
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--accent-blue);
+  box-shadow: inset 2px 2px 6px rgba(15, 23, 42, 0.12), inset -2px -2px 6px rgba(255, 255, 255, 0.9);
 }
 
 .locationIcon {
-  background: rgba(168, 85, 247, 0.2);
+  background: var(--surface);
   color: var(--accent-purple);
+  box-shadow: inset 2px 2px 6px rgba(15, 23, 42, 0.12), inset -2px -2px 6px rgba(255, 255, 255, 0.9);
 }
 
 .contactDetails p:first-child {
@@ -79,20 +100,21 @@
 .formGroup textarea {
   width: 100%;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
+  background: var(--surface-soft);
+  border-radius: 18px;
+  border: none;
   color: var(--text-primary);
   font-size: 1rem;
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  box-shadow: inset 6px 6px 16px rgba(15, 23, 42, 0.2), inset -6px -6px 16px rgba(255, 255, 255, 0.9);
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: var(--accent-blue);
-  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  box-shadow: inset 3px 3px 10px rgba(15, 23, 42, 0.25), inset -3px -3px 10px rgba(255, 255, 255, 0.95);
 }
 
 .formGroup textarea {
@@ -104,7 +126,7 @@
   padding: 1rem 2rem;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 18px;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -114,11 +136,16 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  box-shadow: 10px 10px 26px rgba(15, 23, 42, 0.25), -10px -10px 26px rgba(255, 255, 255, 0.8);
 }
 
 .submitBtn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  box-shadow: 14px 14px 36px rgba(15, 23, 42, 0.25), -14px -14px 36px rgba(255, 255, 255, 0.75);
+}
+
+.submitBtn:active {
+  box-shadow: inset 6px 6px 14px rgba(15, 23, 42, 0.35), inset -6px -6px 14px rgba(255, 255, 255, 0.9);
 }
 
 .section {

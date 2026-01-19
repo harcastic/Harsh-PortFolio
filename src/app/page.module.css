@@ -1,20 +1,11 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+﻿.page {
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
   font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 .main {
@@ -25,8 +16,10 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  background-color: var(--foreground);
+  background: linear-gradient(180deg, var(--surface), var(--surface-soft));
   padding: 120px 60px;
+  border-radius: 32px;
+  box-shadow: 22px 22px 40px var(--shadow-dark), -18px -18px 40px var(--shadow-light);
 }
 
 .intro {
@@ -76,32 +69,42 @@
   height: 40px;
   padding: 0 16px;
   border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  transition: 0.25s ease;
   cursor: pointer;
   width: fit-content;
   font-weight: 500;
+  background: var(--surface);
+  color: var(--text-primary);
+  box-shadow: 10px 10px 22px var(--shadow-dark), -10px -10px 22px var(--shadow-light);
 }
 
 a.primary {
-  background: var(--text-primary);
-  color: var(--background);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  color: white;
   gap: 8px;
+  box-shadow: 8px 8px 16px rgba(15, 23, 42, 0.2), -8px -8px 16px rgba(255, 255, 255, 0.8);
 }
 
 a.secondary {
-  border-color: var(--button-secondary-border);
+  border-color: rgba(15, 23, 42, 0.15);
+  background: var(--surface-soft);
+  color: var(--text-primary);
 }
 
-/* Enable hover only on non-touch devices */
+.ctas a:active {
+  box-shadow: inset 6px 6px 14px rgba(15, 23, 42, 0.25), inset -6px -6px 14px rgba(255, 255, 255, 0.8);
+}
+
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+    filter: brightness(1.05);
+    box-shadow: 10px 10px 20px rgba(15, 23, 42, 0.25), -10px -10px 20px rgba(255, 255, 255, 0.85);
   }
 
   a.secondary:hover {
-    background: var(--button-secondary-hover);
+    background: #ffffff;
+    box-shadow: 10px 10px 20px rgba(15, 23, 42, 0.18), -10px -10px 20px rgba(255, 255, 255, 0.9);
     border-color: transparent;
   }
 }
@@ -119,23 +122,5 @@ a.secondary {
     font-size: 32px;
     line-height: 40px;
     letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
   }
 }

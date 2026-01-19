@@ -9,6 +9,201 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 10px 10px 26px rgba(15, 23, 42, 0.25), -10px -10px 26px rgba(255, 255, 255, 0.85);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+.chatbotButton::before {
+  content: '';
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.chatbotButton:hover::before {
+  opacity: 1;
+}
+
+.chatbotButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 14px 14px 30px rgba(15, 23, 42, 0.25), -14px -14px 30px rgba(255, 255, 255, 0.85);
+}
+
+.chatbotButton:active {
+  box-shadow: inset 4px 4px 14px rgba(15, 23, 42, 0.3), inset -4px -4px 14px rgba(255, 255, 255, 0.9);
+}
+
+.chatbotButton svg {
+  width: 28px;
+  height: 28px;
+  color: var(--accent-blue);
+  position: relative;
+  z-index: 1;
+}
+
+.chatbotPulse {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  opacity: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.chatbotBadge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: white;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.3);
+}
+
+.chatbotTooltip {
+  position: absolute;
+  right: 75px;
+  bottom: 10px;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  color: var(--text-primary);
+  padding: 0.75rem 1.25rem;
+  border-radius: 16px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 10px 10px 30px rgba(15, 23, 42, 0.2), -10px -10px 30px rgba(255, 255, 255, 0.85);
+}
+
+.chatbotTooltip::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--surface);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+
+.chatbotContainer:hover .chatbotTooltip {
+  opacity: 1;
+  right: 82px;
+}
+
+.chatbotWindow {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 360px;
+  height: 520px;
+  background: var(--surface);
+  border-radius: 26px;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  box-shadow: 24px 24px 50px rgba(15, 23, 42, 0.25), -18px -18px 45px rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  transform: scale(0.9) translateY(10px);
+  pointer-events: none;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.chatbotWindow.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: all;
+}
+
+.chatbotHeader {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(168, 85, 247, 0.9));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.chatbotHeader h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.chatbotClose {
+  background: var(--surface);
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 4px 4px 10px rgba(15, 23, 42, 0.25), inset -4px -4px 10px rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+}
+
+.chatbotClose:hover {
+  transform: rotate(90deg);
+}
+
+.chatbotContent {
+  padding: 1.5rem;
+  height: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .chatbotContainer {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .chatbotWindow {
+    width: calc(100vw - 3rem);
+    max-width: 380px;
+  }
+}.chatbotContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+}
+
+.chatbotButton {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
   border: none;
   cursor: pointer;

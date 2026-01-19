@@ -13,6 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="module"
+          src="https://unpkg.com/@splinetool/viewer@1.12.37/build/spline-viewer.js"
+        ></script>
+      </head>
       <body>{children}</body>
     </html>
   );

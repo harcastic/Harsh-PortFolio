@@ -6,7 +6,11 @@
 
 .section {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 2rem auto 3rem;
+  padding: 4rem 2.5rem;
+  background: var(--surface);
+  border-radius: 32px;
+  box-shadow: 24px 24px 45px var(--shadow-dark), -18px -18px 40px var(--shadow-light);
 }
 
 .header {
@@ -41,31 +45,31 @@
 
 .filterBtn {
   padding: 0.75rem 1.5rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: 50px;
-  background: transparent;
+  background: var(--surface);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
   font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  box-shadow: 8px 8px 22px var(--shadow-dark), -8px -8px 22px var(--shadow-light);
 }
 
 .filterBtn:hover {
-  border-color: var(--accent-blue);
-  background: rgba(59, 130, 246, 0.05);
+  background: var(--surface-soft);
   transform: translateY(-2px);
 }
 
 .filterBtn.active {
-  border-color: var(--accent-blue);
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(168, 85, 247, 0.1));
-  color: var(--accent-blue);
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  border-color: transparent;
+  background: linear-gradient(145deg, rgba(59, 130, 246, 0.18), rgba(168, 85, 247, 0.15));
+  color: white;
+  box-shadow: 10px 10px 24px rgba(15, 23, 42, 0.25), -10px -10px 24px rgba(255, 255, 255, 0.9);
 }
 
 .projectsGrid {
@@ -76,12 +80,13 @@
 }
 
 .projectCard {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 1rem;
+  background: var(--surface-soft);
+  border-radius: 1.5rem;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition: all 0.35s ease;
   animation: fadeInUp 0.6s ease forwards;
+  box-shadow: 16px 16px 34px var(--shadow-dark), -16px -16px 34px var(--shadow-light);
 }
 
 .projectCard:nth-child(1) { animation-delay: 0.1s; }
@@ -102,8 +107,8 @@
 
 .projectCard:hover {
   transform: translateY(-10px);
-  border-color: rgba(59, 130, 246, 0.5);
-  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1);
+  border-color: transparent;
+  box-shadow: 24px 24px 45px rgba(15, 23, 42, 0.25), -18px -18px 40px rgba(255, 255, 255, 0.95);
 }
 
 .projectImage {
@@ -146,20 +151,21 @@
 .projectLink {
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 0.5rem;
+  background: var(--surface);
+  border-radius: 0.6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  color: white;
+  color: var(--text-primary);
   transition: all 0.3s ease;
+  box-shadow: 6px 6px 14px rgba(15, 23, 42, 0.2), -6px -6px 14px rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .projectLink:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: scale(1.1);
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 22px rgba(15, 23, 42, 0.25), -10px -10px 22px rgba(255, 255, 255, 0.9);
 }
 
 .projectContent {
@@ -213,10 +219,11 @@
 
 .techTag {
   padding: 0.25rem 0.75rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 0.25rem;
+  background: var(--surface);
+  border-radius: 0.75rem;
   font-size: 0.75rem;
   color: var(--text-secondary);
+  box-shadow: inset 2px 2px 6px rgba(15, 23, 42, 0.1), inset -2px -2px 6px rgba(255, 255, 255, 0.8);
 }
 
 .projectFeatures {

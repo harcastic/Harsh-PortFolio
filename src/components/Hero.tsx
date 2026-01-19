@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -33,12 +35,10 @@ export default function Hero() {
 
   return (
     <section className={styles.hero}>
-      <div className={`${styles.bgBlob} ${styles.blob1}`}></div>
-      <div className={`${styles.bgBlob} ${styles.blob2}`}></div>
-      
+      {/* LEFT COLUMN: Hero Content */}
       <div className={styles.heroContent}>
         <h1>Hi, I&apos;m <span className="gradient-text">Harsh Raj</span></h1>
-        <p className={styles.subtitle}>Cloud Engineer & Full Stack Developer </p>
+        <p className={styles.subtitle}>Cloud Engineer & Full Stack Developer</p>
         <p className={styles.description}>
           Building scalable web applications and cloud infrastructure. 
           Passionate about clean code, modern technologies, and solving complex problems.
@@ -62,6 +62,13 @@ export default function Hero() {
         <a href="#projects" className={styles.ctaButton}>View My Work</a>
       </div>
 
+      {/* RIGHT COLUMN: Spline 3D Model */}
+      <div className={styles.splineContainer}>
+        {/* @ts-expect-error - spline-viewer is a custom web component */}
+        {<spline-viewer url="https://prod.spline.design/eF93CDz-DT5AF8iZ/scene.splinecode"></spline-viewer>}
+      </div>
+
+      {/* Scroll Indicator */}
       <div className={styles.scrollIndicator}>
         <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M12 5v14m0 0l-7-7m7 7l7-7"/>

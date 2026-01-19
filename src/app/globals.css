@@ -5,13 +5,16 @@
 }
 
 :root {
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #1a1a1a;
-  --text-primary: #ededed;
-  --text-secondary: #9ca3af;
+  --bg-primary: #e6e8ec;
+  --surface: #f4f6fb;
+  --surface-soft: #fafbff;
+  --text-primary: #1f2933;
+  --text-secondary: #4b5563;
   --accent-blue: #3b82f6;
   --accent-purple: #a855f7;
   --accent-pink: #ec4899;
+  --shadow-dark: rgba(15, 23, 42, 0.2);
+  --shadow-light: rgba(255, 255, 255, 0.85);
 }
 
 html {
@@ -23,6 +26,12 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
+}
+
+.soft-neu {
+  background: var(--surface);
+  box-shadow: 18px 18px 32px var(--shadow-dark), -18px -18px 32px var(--shadow-light);
+  border-radius: 20px;
 }
 
 .gradient-text {
